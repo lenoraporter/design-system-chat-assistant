@@ -1,4 +1,6 @@
 import OpenAI from "openai";
+import dotenv from "dotenv";
+dotenv.config();
 
 /** OpenAI config */
 if (!process.env.OPENAI_API_KEY)
