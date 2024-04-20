@@ -3,6 +3,7 @@ import { openai } from "./config.js";
 // Assistant variables
 const asstID = "asst_dBIqrEYjifXIFVsOtNhB2cYN";
 const threadID = "thread_GfIAhRtGKCoNx1EppGAQmshT";
+const runID = "run_TnEOaHsKutJba5GOaddi70Xs";
 
 // Upload a file with an "assistants" purpose
 // const file = await openai.files.create({
@@ -39,3 +40,24 @@ async function createMessage() {
 	console.log(threadMessages);
 }
 createMessage();
+
+// Run the assistant's thread
+async function runThread() {
+	const run = await openai.beta.threads.runs.create(threadID, {
+		assistant_id: asstID,
+	});
+	console.log(run);
+}
+runThread();
+
+// Get the current run
+// const currentRun = await openai.beta.threads.runs.retrieve(threadID, runID);
+// console.log("Run status: " + currentRun.status);
+
+// List thread messages
+async function listMessages() {
+	const threadMessages = await openai.beta.threads.messages.list(threadID);
+
+	console.log(threadMessages.data[0].content[0].text[0].value);
+}
+listMessages();
