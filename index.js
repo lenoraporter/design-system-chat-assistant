@@ -29,3 +29,13 @@ const threadID = "thread_GfIAhRtGKCoNx1EppGAQmshT";
 // Create a thread
 // const thread = await openai.beta.threads.create();
 // console.log(thread);
+
+// Create a message for the thread
+async function createMessage() {
+	const threadMessages = await openai.beta.threads.messages.create(threadID, {
+		role: "user",
+		content: "Can you recommend a comedy?",
+	});
+	console.log(threadMessages);
+}
+createMessage();
